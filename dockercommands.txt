@@ -1,0 +1,59 @@
+>sudo apt-get update
+>sudo apt-get install docker.io
+>docker --version (check version)
+>sudo docker pull ubuntu (pull image to host computer)
+>sudo docker images (see images)
+>sudo docker run -it -d ubuntu (run the image; container just started)
+>sudo docker ps (show containers that just started ; which are in running state)
+>sudo docker stop containerid (stop the container)
+>sudo docker ps -a (show all container whether they are start or stop state)
+>sudo docker exec -it containerid bash (run container in current bash; it switched to root of the container id)
+>docker kill containerid (shutting down the container)
+>docker rm containerid (remode / delete teh container)
+>sudo docker rmi imageid (delete the image from system)
+--------------
+ Docker Hub 
+hub.docker.com
+run and execute teh container using above command
+go to contcainer: create a directory
+
+>docker commit 'containerid' 'newimagename'(Save changes to container/ save teh container)
+>sudo docker run -it -d ubuntu(run a container)
+>sudo docker exec -it containerid bash
+>sudo apt-get update
+>ap-get install apache2 (install apache s/w)
+>service apache2 status (check if running or not)
+>service apache2 start
+>exit (from contaviner)
+>sudo docker commit 'containerid' 'userid'/'name you wnat to give to container' (save your image)
+>sudo docker images (check images)
+>sudo docker run -it -p 82:80 -d 'userid'/'name you wnat to give to container' (As apache works on port 80; if you want to check if the host is mapped to the port of container use this command and then check inbound rule to be opened for 80and check page by hitting the public ip)
+---------
+push image to repository Docker hub
+
+>sudo docker login (login to docker hub)
+>User name:
+>password:
+
+>sudo docker push 'userid'/'name of image' (push th eimage on docker)
+------------
+What is dockerFile
+It is a text doc (script file) having details how to wnat your container to be cunstomised 
+
+"Dockerfile" content
+>FROM ubuntu (where the change is required)
+>ADD ./var/www/html (add files to thsi location inside container)
+>RUN apt-get update
+>RUN apt-get -y install apache2 (run con container)
+>CMD apachectl -D FOREGROUND (start the service at startup time like apache service will be run the moment the ontainer starts;)
+>ENTRYPOINT apachectl -D FOREGROUND (will run in all case if mentioned)
+>ENV name 'value of variable'
+
+After creating docker file
+GO to ->
+>cd dockerfile/ (go to path where Dockerfile is kept)
+>docker build . -t new_dockerfile (build teh docker file)
+run the docker file with port opened
+And check on web page after adding one html file
+
+-------------------
